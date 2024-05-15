@@ -14,8 +14,6 @@ spring:
           uri: lb://catalog-service/
           predicates:
             - Path=catalog/**
-    config:
-      enabled: false
 
 eureka:
   client:
