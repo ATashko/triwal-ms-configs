@@ -28,7 +28,7 @@ security:
             - Path=/transaction/**
           filters:
             - StripPrefix=1
-        - id: ms-users
+        - id: ms-user
           uri: lb://ms-user
           predicates:
             - Path=/user/**
