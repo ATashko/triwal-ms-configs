@@ -10,10 +10,10 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: catalogRoute
-          uri: lb://catalog-service/
+        - id: userRoute
+          uri: lb://ms-user/
           predicates:
-            - Path=catalog/**
+            - Path=user/**
 
 eureka:
   client:
