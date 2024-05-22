@@ -4,27 +4,43 @@ server:
 spring:
   application:
     name: gateway
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak-gateway:
+            issuer-uri: http://localhost:9090/realms/TorresSebastian
+        registration:
+          keycloak-gateway:
+            client-id: triwal-app
+            client-secret: xAO6D6zn9ELy3DIQbQmh2s9cH8jX1MER
+            scope:
+              - openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
+      default-filters: TokenRelay
       routes:
-        - id: userRoute
-          uri: lb://ms-user/
+        - id: ms-transaction
+          uri: lb://ms-transaction
           predicates:
-            - Path=user/**
+            - Path=/transaction/**
+        - id: ms-users
+          uri: lb://ms-users
+          predicates:
+            - Path=/user/**
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    registry-fetch-interval-seconds: 5
-    healthcheck:
-      enable: true
-    service-url:
-      default-zone: http://localhost:8761/
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10

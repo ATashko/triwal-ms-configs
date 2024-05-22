@@ -1,8 +1,13 @@
 server:
   port: ${PORT:${SERVER_PORT:0}}
-
   application:
     name: ms-user
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/triwal-realm-dev
+          jwk-set-uri: http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/certs
 
 eureka:
   client:
@@ -17,3 +22,13 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
+
+jwt:
+  auth:
+    converter:
+      resource-id: triwal-app
+      main-attr: preferred_username
+
+logging:
+  level:
+    root: error
