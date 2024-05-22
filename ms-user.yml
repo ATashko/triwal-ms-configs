@@ -1,7 +1,6 @@
 server:
   port: ${PORT:${SERVER_PORT:0}}
-  application:
-    name: ms-user
+
   security:
     oauth2:
       resource-server:
@@ -23,7 +22,7 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
 
-jwt:
+jwtConverter:
   auth:
     converter:
       resource-id: triwal-app
