@@ -4,33 +4,22 @@ server:
 spring:
   application:
     name: gateway
-eureka:
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak-gateway:
-            issuer-uri: http://localhost:9090/realms/triwal-realm-dev
-        registration:
-          keycloak-gateway:
-            client-id: triwal-app
-            client-secret: 2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
-            scope:
-              - openid
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+security:
+  oauth2:
+    client:
+      provider:
+        keycloak-gateway:
+          issuer-uri: http://localhost:9090/realms/triwal-realm-dev
+      registration:
+        keycloak-gateway:
+          client-id: triwal-app
+          client-secret: 2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
+          scope:
+            - openid
+          authorization-grant-type: authorization_code
+          redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
   cloud:
     gateway:
-
       default-filters: TokenRelay
       routes:
         - id: ms-transaction
@@ -40,7 +29,7 @@ eureka:
           filters:
             - StripPrefix=1
         - id: ms-users
-          uri: lb://ms-users
+          uri: lb://ms-user
           predicates:
             - Path=/user/**
             - Path=/registration/**
@@ -50,4 +39,15 @@ eureka:
       discovery:
         locator:
           enabled: true
+
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
 
