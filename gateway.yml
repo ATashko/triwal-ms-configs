@@ -22,8 +22,8 @@ eureka:
             issuer-uri: http://localhost:9090/realms/triwal-realm-dev
         registration:
           keycloak-gateway:
-            client-id: //
-            client-secret: //
+            client-id: triwal-app
+            client-secret: 2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
             scope:
               - openid
             authorization-grant-type: authorization_code
