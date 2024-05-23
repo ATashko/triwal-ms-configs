@@ -30,6 +30,7 @@ security:
           uri: http://ms-user
           predicates:
             - Path=/registration/**
+            - Path=/user/**
       discovery:
         locator:
           enabled: true
