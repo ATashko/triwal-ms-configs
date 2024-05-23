@@ -15,11 +15,15 @@ security:
           client-id: triwal-gateway
           client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
           scope:
-            - openid
+            - openid, message.read
           authorization-grant-type: authorization_code
           redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       default-filters: TokenRelay
       routes:
         - id: ms-transaction
@@ -29,12 +33,14 @@ security:
         - id: ms-user
           uri: lb://ms-user
           predicates:
-            - Path=/registration/**
             - Path=/user/**
-      discovery:
-        locator:
-          enabled: true
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
 
 eureka:
   instance:
