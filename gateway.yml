@@ -12,8 +12,8 @@ security:
           issuer-uri: http://localhost:9090/realms/triwal-realm-dev
       registration:
         keycloak-gateway:
-          client-id: triwal-app
-          client-secret: 2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
+          client-id: triwal-gateway
+          client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
           scope:
             - openid
           authorization-grant-type: authorization_code
