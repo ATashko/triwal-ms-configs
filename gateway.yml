@@ -26,14 +26,10 @@ security:
           uri: lb://ms-transaction
           predicates:
             - Path=/transaction/**
-          filters:
-            - StripPrefix=1
         - id: ms-user
           uri: lb://ms-user
           predicates:
             - Path=/user/**
-          filters:
-            - StripPrefix=1
       discovery:
         locator:
           enabled: true
