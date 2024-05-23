@@ -37,8 +37,7 @@ security:
           uri: lb://MS-USER
           predicates:
             - Path=/authentication/**
-main:
-  web-application-type: reactive
+
 
 
 management:
