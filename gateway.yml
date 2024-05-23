@@ -10,7 +10,7 @@ security:
           issuer-uri: http://localhost:9090/realms/triwal-realm-dev
       registration:
         keycloak-gateway:
-          client-id: triwal-gateway
+          client-id: gateway
           client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
           scope:
             - openid
