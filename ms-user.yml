@@ -31,4 +31,4 @@ jwtConverter:
 
 logging:
   level:
-    root: error
+    root: debug
