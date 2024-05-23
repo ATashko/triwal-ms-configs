@@ -6,6 +6,7 @@ security:
     client:
       provider:
         keycloak-gateway:
+          user-name-attribute: preferred_username
           issuer-uri: http://localhost:9090/realms/triwal-realm-dev
       registration:
         keycloak-gateway:
@@ -14,7 +15,7 @@ security:
           scope:
             - openid
           authorization-grant-type: authorization_code
-          redirect-uri: http://localhost:8080/login/oauth2/code/triwal-gateway
+          redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
 
   cloud:
     gateway:
@@ -56,4 +57,7 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+
+
+
 
