@@ -29,7 +29,7 @@ security:
         - id: ms-user
           uri: lb://ms-user
           predicates:
-            - Path=/user/**
+            - Path=/registration/**
       discovery:
         locator:
           enabled: true
