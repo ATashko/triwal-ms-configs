@@ -32,8 +32,6 @@ security:
           uri: lb://ms-user
           predicates:
             - Path=/user/**
-            - Path=/registration/**
-            - Path=/admin/**
           filters:
             - StripPrefix=1
       discovery:
