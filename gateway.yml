@@ -23,11 +23,11 @@ security:
       default-filters: TokenRelay
       routes:
         - id: ms-transaction
-          uri: lb://ms-transaction
+          uri: http://ms-transaction
           predicates:
             - Path=/transaction/**
         - id: ms-user
-          uri: lb://ms-user
+          uri: http://ms-user
           predicates:
             - Path=/registration/**
       discovery:
