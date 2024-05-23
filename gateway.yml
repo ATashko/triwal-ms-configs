@@ -1,9 +1,6 @@
 server:
   port: 8080
 
-spring:
-  application:
-    name: gateway
 security:
   oauth2:
     client:
@@ -15,25 +12,32 @@ security:
           client-id: triwal-gateway
           client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
           scope:
-            - openid, message.read
+            - openid
           authorization-grant-type: authorization_code
-          redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+          redirect-uri: http://localhost:8080/login/oauth2/code/triwal-gateway
 
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
-      default-filters: TokenRelay
       routes:
-        - id: ms-transaction
-          uri: lb://ms-transaction
+        - id: transaction
+          uri: lb://MS-TRANSACTION
           predicates:
             - Path=/transaction/**
-        - id: ms-user
-          uri: lb://ms-user
+        - id: user
+          uri: lb://MS-USER
           predicates:
             - Path=/user/**
+          filters:
+            - TokenRelay=
+        - id: auth
+          uri: lb://MS-USER
+          predicates:
+            - Path=/authentication/**
+main:
+  web-application-type: reactive
 
 
 management:
@@ -45,6 +49,7 @@ management:
 eureka:
   instance:
     hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
     register-with-eureka: true
