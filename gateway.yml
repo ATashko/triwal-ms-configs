@@ -17,6 +17,9 @@ security:
           authorization-grant-type: authorization_code
           redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
 
+spring:
+  application:
+    name: gateway
   cloud:
     gateway:
       discovery:
