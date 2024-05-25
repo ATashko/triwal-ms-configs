@@ -1,7 +1,10 @@
 server:
   port: 8082
+  context-path: /user/
 
-
+spring:
+  application:
+    name: ms-user
   security:
     oauth2:
       resourceserver:
